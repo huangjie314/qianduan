@@ -1,0 +1,35 @@
+var gulp=require('gulp')
+// 引入组件依赖
+var jshint=require('gulp-jshint')
+var sass=require('gulp-sass')
+var concat=require('gulp-concat')
+var uglify=require('gulp-uglify')
+var rename=require('gulp-rename')
+
+// 检查脚本
+gulp.task("lint",function(){
+    gulp.src('js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+    console.log("检查脚本完毕！")
+})
+
+// 合并压缩
+gulp.task("script",function(){
+    gulp.src('js/*.js')
+    .pipe(concat("all.js")) //合并匹配到的js文件并命名为all.js
+    .pipe(gulp.dest('dist'))
+    .pipe(uglify()) //使用uglify进行压缩
+    .pipe(rename('all.min.js'))//重命名文件
+    .pipe(gulp.dest("dist")) //压缩后的路径
+    console.log("合并压缩完毕！")
+})
+
+// 默认任务
+gulp.task("default",function(){
+    gulp.run('lint','script')
+    gulp.watch('js/*.js',function(){
+        gulp.run('lint','script')
+        console.log("文件变化调整完毕！")
+    })
+})
