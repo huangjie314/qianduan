@@ -1,0 +1,13 @@
+浏览器事件的冒泡、捕获(js的事件委托)
+
+JavaScript语言运行机制（异步特性）
+
+push() join()
+
+toString() split("")
+
+prototype.js是对原生对象的功能增强，多是扩充原生对象。
+jquery.js是对原生语句的封装，多是构建自己的对象。
+
+
+正则表达式-----http://javascript.ruanyifeng.com/stdlib/regexp.html#toc0
