@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    var Vercle = function(){
+        this.price = 1000
+    }
+    var v = new Vercle();
+    console.log(v.price)
+
+    // 避免构造函数忘了与new命令一起使用
+    function Fubar(foo,bar){
+      /**
+        第一种解决方法，在构造函数内部严格模式，
+        在构造函数内部第一行写上use strict
+        */
+        'use strict';
+        this._foo = foo;
+        this._bar = bar;
+    }
+    Fubar(1,2)._foo;
+
+    /**
+        另一个解决办法，是在构造函数内部判断是否使用new命令，
+        如果发现没有使用，则直接返回一个实例对象。
+    */
+    function Fubar(foo,bar){
+        if(!(this instanceof Fubar)){
+            return new Fubar(foo,bar);
+        }
+        this._foo = foo;
+        this._bar = bar;
+    }
+   Fubar(1,2)._foo;
+</script>
