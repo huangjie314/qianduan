@@ -1,0 +1,21 @@
+var gulp=require('gulp')
+// 引入组件依赖
+var jshint=require('gulp-jshint')
+// var sass=require('gulp-sass')
+var concat=require('gulp-concat')
+var uglify=require('gulp-uglify')
+var rename=require('gulp-rename')
+gulp.task('jshint',function(){
+    gulp.src('js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter());
+})
+gulp.task('minify',function(){
+    gulp.src('js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest("dest/js/"));
+})
+gulp.task('watch',function(){
+    gulp.watch('js/*.js',['jshint','minify'])
+})
+gulp.task('default',['jshint','minify','watch']);
