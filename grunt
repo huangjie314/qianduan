@@ -19,9 +19,23 @@ module.exports = function(grunt){
                 banner: '/*! <%=pkg.name %> <%=grunt.template.today("dd-mm-yyyy") %> */\n'
             },
             dist: {
+                //文件对象格式
                 files: {
                     'dist/<%=pkg.name %>.min.js' : ['<%=concat.dist.dest %>']
                 }
+                //文件数组格式
+                files:[
+                    // {src:['src/a.js'],dest:'dest/a.min.js'},
+                    // {src:['src/b.js'],dest:'dest/b.min.js'},
+                    // {src:['src/c.js'],dest:'dest/c.min.js'}
+                    {src:['dest/grunt.js'], dest: 'min/src/grunt.min.js'},
+                    {
+                        expand: true,
+                        cwd: 'src/',
+                        src: '*.js',
+                        dest: 'min/src/'
+                    }
+                ]
             }
         },
         jshint: {
