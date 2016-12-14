@@ -1,0 +1,54 @@
+// module.exports = function(grunt){
+//     grunt.initConfig({
+//         log: {
+//             foo: [1,2,3],
+//             bar: 'hello world',
+//             baz: false
+//         }
+//     })
+
+//     grunt.registerMultiTask('log','Log stuff',function(){
+//         grunt.log.writeln(this.target + '-->' + this.data)
+//     })
+//     grunt.registerTask('foo',function(arg1,arg2){
+//         if(arguments.length===0){
+//             grunt.log.writeln(this.name +'-->'+ 'no arg')
+//         }else{
+//             grunt.log.writeln(this.name +'-->' +'-->' + arg1 +'-->' + arg2)
+//         }
+//     })
+// }
+module.exports = function(grunt){
+
+    //Project configuration
+    grunt.initConfig({
+        pkg:grunt.file.readJSON('package.json'),
+        uglify:{
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            dist: {
+                files:[
+                    {src:['src/a.js'],dest:'dest/a.min.js'},
+                    {src:['src/b.js'],dest:'dest/b.min.js'},
+                    {src:['src/c.js'],dest:'dest/c.min.js'}
+                    // {
+                    //     expand: true,
+                    //     cwd: 'src/',
+                    //     src: '*.js',
+                    //     dest: 'min/src/'
+                    // }
+
+                ]
+            }
+        }
+    });
+
+    //加载包含 “uglify” 任务的插件
+
+    grunt.loadNpmTasks('grunt-contrib-uglify')
+
+    //默认被执行的任务列表
+    grunt.registerTask('default',['uglify'])
+
+}
