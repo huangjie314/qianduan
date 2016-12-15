@@ -1,0 +1,19 @@
+/**
+  * 执行空间影响this的取值
+*/
+$('ul').on('blur','input',function(){
+    (function(obj){
+        var time = setTimeout(function(){
+          obj.next('.close').addClass('hide');
+        },150);
+    })($(this))  ----> "input"
+})
+$('ul').on('blur','input',function(){
+    alert(this.nodeName) -----> "input"
+    (function(){
+        alert(this.nodeName)  ------> "undefined"
+        var time = setTimeout(function(){
+          $(this).next('.close').addClass('hide');
+        },150);
+    })()
+})
