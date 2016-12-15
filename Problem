@@ -9,9 +9,9 @@ $('ul').on('blur','input',function(){
     })($(this))  ----> "input"
 })
 $('ul').on('blur','input',function(){
-    alert(this.nodeName) -----> "input"
+    alert(this) -----> "input"
     (function(){
-        alert(this.nodeName)  ------> "undefined"
+        alert(this)  ------> "window"
         var time = setTimeout(function(){
           $(this).next('.close').addClass('hide');
         },150);
