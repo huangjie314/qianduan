@@ -5,6 +5,8 @@ var jshint=require('gulp-jshint')
 var concat=require('gulp-concat')
 var uglify=require('gulp-uglify')
 var rename=require('gulp-rename')
+var notify=require('gulp-notify')
+
 gulp.task('jshint',function(){
     gulp.src('js/*.js')
     .pipe(jshint())
@@ -15,6 +17,17 @@ gulp.task('minify',function(){
     .pipe(uglify())
     .pipe(rename({suffix: ".min"}))
     .pipe(gulp.dest("dest/js/"));
+    
+    /**  排除某些文件
+     gulp.src(['js/!(*.min.js)'])
+     .pipe(uglify())
+     .pipe(rename({suffix: ".min"}))
+     .pipe(gulp.dest("dest"))
+     gulp.src(['js/*.min.js'])
+     .pipe(gulp.dest('dest'))
+     .pipe(notify({message:"js task is ok"}));
+     **/
+    
 })
 gulp.task('watch',function(){
     gulp.watch('js/*.js',['jshint','minify'])
