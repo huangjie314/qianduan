@@ -5,6 +5,8 @@ var sass=require('gulp-sass')
 var concat=require('gulp-concat')
 var uglify=require('gulp-uglify')
 var rename=require('gulp-rename')
+var del = require('del');
+var vinyPaths = require('vinyl-paths');
 
 // 检查脚本
 gulp.task("lint",function(){
@@ -24,6 +26,20 @@ gulp.task("script",function(){
     //.pipe(rename({suffix: ".min"}))
     .pipe(gulp.dest("dist")) //压缩后的路径
     console.log("合并压缩完毕！")
+})
+
+//删除文件
+gulp.task('clean:build', function (cb) {
+    del([
+        'build/**/*',
+        '!build/**/*.min.js'
+    ])
+});
+gulp.task('clean:tmp', function (cb) {
+    return gulp.src('tmp/*')
+        .pipe(stripDebug())
+        .pipe(gulp.dest('dist'))
+        .pipe(vinyPaths(del));
 })
 
 // 默认任务
