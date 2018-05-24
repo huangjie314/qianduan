@@ -29,12 +29,14 @@ gulp.task("script",function(){
 })
 
 //删除文件
+//@1 直接删除
 gulp.task('clean:build', function (cb) {
     del([
         'build/**/*',
         '!build/**/*.min.js'
     ])
 });
+//@2 在管道流中删除
 gulp.task('clean:tmp', function (cb) {
     return gulp.src('tmp/*')
         .pipe(stripDebug())
