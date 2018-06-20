@@ -15,31 +15,20 @@ gulp-notify:     提示
 ~~~
 
 ## gulp-autoprefixer的使用
-
-> //编译sass
->
-> gulp.task('compile-sass', function(){
->
-> ​    gulp.src('sass/*.+(sass|scss)')    //['sass/*.sass', 'sass/*.scss']
->
-> ​    .pipe(plugins.autoprefixer({
->
-> ​        browsers: browsers,
->
-> ​        cascade: true,  
->
-> ​        remove: true
->
-> ​    }))
->
-> ​    .pipe(plugins.sass({outputStyle: 'expanded'}).on('error', plugins.sass.logError))
->
-> ​    .pipe(gulp.dest('css'))
->
-> ​    .pipe(plugins.notify({message: 'compile sass success!'}))
->
-> })
-
+~~~
+//编译sass
+gulp.task('compile-sass', function(){
+    gulp.src('sass/*.+(sass|scss)')//['sass/*.sass', 'sass/*.scss']
+    .pipe(plugins.autoprefixer({
+        browsers: browsers,
+        cascade: true,
+        remove: true
+    }))
+    .pipe(plugins.sass({outputStyle: 'expanded'}).on('error', plugins.sass.logError))
+    .pipe(gulp.dest('css'))
+    .pipe(plugins.notify({message: 'compile sass success!'}))
+})
+~~~
 关于autoprefixer参数说明：
 
 >* browsers               选择兼容的浏览器型号
